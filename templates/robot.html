@@ -1,132 +1,118 @@
+<!DOCTYPE html>
 <html>
 <head>
+<title>Raspberry Pi robot control</title>
 <meta charset="utf-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 .triangle-up {
 	width: 0;
 	height: 0;
-	border-left: 40px solid transparent;
-	border-right: 40px solid transparent;
-	border-bottom: 70px solid #009;
+	border-left: 40px solid #eadedb;
+	border-right: 40px solid #eadedb;
+	border-bottom: 70px solid #0040ff;
 }
-
-
 
 .triangle-down {
 	width: 0;
 	height: 0;
-	border-left: 40px solid transparent;
-	border-right: 40px solid transparent;
-	border-top: 70px solid #009;
+	border-left: 40px solid #eadedb;
+	border-right: 40px solid #eadedb;
+	border-top: 70px solid #0040ff;
 }
-
-
 
 .triangle-left {
 	width: 0;
 	height: 0;
-	border-top: 40px solid transparent;
-	border-right: 70px solid #009;
-	border-bottom: 40px solid transparent;
+	border-top: 40px solid #eadedb;
+	border-right: 70px solid #0040ff;
+	border-bottom: 40px solid #eadedb;
 }
-
-
 
 .triangle-right {
 	width: 0;
 	height: 0;
-	border-top: 40px solid transparent;
-	border-left: 70px solid #009;
-	border-bottom: 40px solid transparent;
+	border-top: 40px solid #eadedb;
+	border-left: 70px solid #0040ff;
+	border-bottom: 40px solid #eadedb;
 }
 </style>
-
-
 </head>
-<body style="background-color:grey;">
 
-<h2>Controllo</h2>
 
-<div> <!-- div principale che contiene comandi e immagine  -->
+<body style="background-color:#eadedb;">
 
-<div class="container">
-  <input href="#" id="lightON" type="button" class="btn btn-default" value="Light ON">
-  <input href="#" id="lightOFF" type="button" class="btn btn-default" value="Light OFF">
+<div class="container-fluid">
+  <h2>Control</h2>
+	<input href="#" id="lightON" type="button" class="btn btn-secondary" value="Light ON">
+	<input href="#" id="lightOFF" type="button" class="btn btn-secondary" value="Light OFF">
 </div>
 
-    <br><br>
-
-	<div class="container-fluid">
-
-	  <div class="row">
-
-	    <div class="col-xs-2 col-md-4 hight" style="background-color:black;">
-				<center>
-					<div href="#" id="up" class="triangle-up" ></div><br><br>
-					<div href="#" id="down" class="triangle-down" ></div>
-
-			</div>
-
-			<div class="col-xs-6 col-md-4" style="background-color:lavenderblush;">
-				<center>
-				<img src="http://192.168.43.136:8081" style="max-width:100%" > <!--Enter the IP Address of your Raspberry Pi   "http://192.168.43.136:8081"  -->
-			</div>
-
-			<div class="col-xs-2 col-md-2" style="background-color:black;">
-				<div href="#" id="left" class="triangle-left" style="float:left;"></div>
-			</div>
-
-			<div class="col-xs-2 col-md-2" style="background-color:black;">
-				<div href="#" id="right" class="triangle-right" style="float:right;"></div>
-			</div>
-
-	  </div>
-	</div>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+			<div href="#" id="up" class="triangle-up" ></div><br><br>
+			<div href="#" id="down" class="triangle-down" ></div>
+    </div>
+    <div class="col-6">
+			<center>
+			<img src="http://192.168.43.136:8081" style="max-width:100%" > <!--Enter the IP Address of your Raspberry Pi   "http://192.168.43.136:8081"  -->
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <div class="col align-self-center">
+					<div href="#" id="left" class="triangle-left" style="float:left;"></div>
+				</div>
+        <div class="col align-self-center">
+					<div href="#" id="right" class="triangle-right" style="float:right;"></div>
+				</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <script>
 $( document ).ready(function(){
     $("#down").on("mousedown touchstart", function() {
      $.get('/down_side');
-		 $("#down").css("background-color", "white");
+		 $("#down").css("border-top", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
      $.get('/stop');
-		 $("#down").css("background-color", "transparent");
+		 $("#down").css("border-top", "70px solid #0040ff");
     });
     $("#up").on("mousedown touchstart", function() {
      $.get('/up_side');
-		 $("#up").css("background-color", "white");
+		 $("#up").css("border-bottom", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
      $.get('/stop');
-		 $("#up").css("background-color", "transparent");
+		 $("#up").css("border-bottom", "70px solid #0040ff");
     });
     $("#left").on("mousedown touchstart", function() {
      $.get('/left_side');
-		 $("#left").css("background-color", "white");
+		 $("#left").css("border-right", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
      $.get('/stop');
-		 $("#left").css("background-color", "transparent");
+		 $("#left").css("border-right", "70px solid #0040ff");
     });
     $("#right").on("mousedown touchstart", function() {
      $.get('/right_side');
-		 $("#right").css("background-color", "white");
+		 $("#right").css("border-left", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
      $.get('/stop');
-		 $("#right").css("background-color", "transparent");
+		 $("#right").css("border-left", "70px solid #0040ff");
     });
     $("#lightON").on('click touch',function(){
         $.get('/lighton');
     });
     $("#lightOFF").on('click touch',function(){
         $.get('/lightoff');
-    });     
+    });
 });
 </script>
 
