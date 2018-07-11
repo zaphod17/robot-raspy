@@ -70,17 +70,18 @@
   	{% if pins[8].state == true %}
 		 <div class="row">
 			 <div class="col-md-2"><br/>
+			 <img src="/static/Lighton.png" alt="on" width="42"/>
 		     <a href="/{{8}}/off" class="btn btn-dark" role="button">Lights off</a>
 		     </div>
 		 </div>
 	{% else %}
 		 <div class="row">
 			 <div class="col-md-2"><br/>
+			 <img src="/static/Lightoff.png" alt="off" width="42"/>
 		     <a href="/{{8}}/on" class="btn btn-warning" role="button">Lights on</a>
 		     </div>
 		 </div>
 	{% endif %}		
-		
 		
       </div>
     </div>
