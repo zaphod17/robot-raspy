@@ -95,28 +95,28 @@ $( document ).ready(function(){
      $.get('/down_side');
 		 $("#down").css("border-top", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
-     $.get('/stop');
+     $.get('/stopAD');
 		 $("#down").css("border-top", "70px solid #0040ff");
     });
     $("#up").on("mousedown touchstart", function() {
      $.get('/up_side');
 		 $("#up").css("border-bottom", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
-     $.get('/stop');
+     $.get('/stopAD');
 		 $("#up").css("border-bottom", "70px solid #0040ff");
     });
     $("#left").on("mousedown touchstart", function() {
      $.get('/left_side');
 		 $("#left").css("border-right", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
-     $.get('/stop');
+     $.get('/stopDS');
 		 $("#left").css("border-right", "70px solid #0040ff");
     });
     $("#right").on("mousedown touchstart", function() {
      $.get('/right_side');
 		 $("#right").css("border-left", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
-     $.get('/stop');
+     $.get('/stopDS');
 		 $("#right").css("border-left", "70px solid #0040ff");
     });
     $("#lightON").on('click touch',function(){
