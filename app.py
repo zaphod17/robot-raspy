@@ -55,46 +55,40 @@ def index():
 @app.route('/left_side')
 def left_side():
     data1="LEFT"
-    GPIO.output(m11 , 0)
-    GPIO.output(m12 , 0)
     GPIO.output(m21 , 1)
-    GPIO.output(m22 , 0)
     return 'true'
 
 @app.route('/right_side')
 def right_side():
    data1="RIGHT"
    GPIO.output(m11 , 1)
-   GPIO.output(m12 , 0)
-   GPIO.output(m21 , 0)
-   GPIO.output(m22 , 0)
    return 'true'
 
 @app.route('/up_side')
 def up_side():
    data1="FORWARD"
-   GPIO.output(m11 , 1)
-   GPIO.output(m12 , 0)
-   GPIO.output(m21 , 1)
-   GPIO.output(m22 , 0)
+   GPIO.output(m12 , 1)
    return 'true'
 
 @app.route('/down_side')
 def down_side():
    data1="BACK"
-   GPIO.output(m11 , 0)
-   GPIO.output(m12 , 1)
-   GPIO.output(m21 , 0)
    GPIO.output(m22 , 1)
    return 'true'
 
-@app.route('/stop')
-def stop():
-   data1="STOP"
-   GPIO.output(m11 , 0)
+@app.route('/stopAD')
+def stopAD():
+   data1="STOPad"
    GPIO.output(m12 , 0)
-   GPIO.output(m21 , 0)
    GPIO.output(m22 , 0)
+   return  'true'
+
+
+@app.route('/stopDS')
+def stopDS():
+   data1="STOPds"
+   GPIO.output(m11 , 0)
+   GPIO.output(m21 , 0)
    return  'true'
 
 
