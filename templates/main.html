@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Raspberry Pi robot control</title>
+<title>Raspberry Pi Remote Controlled Car</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -67,18 +67,18 @@
 					<div href="#" id="right" class="triangle-right" style="float:right;"></div>
 		</div>
 		
-  	{% if pins[8].state == true %}
+  	{% if Light.state == true %}
 		 <div class="row">
 			 <div class="col-md-2"><br/>
 			 <img src="/static/Lighton.png" alt="on" width="42"/>
-		     <a href="/{{8}}/off" class="btn btn-dark" role="button">Lights off</a>
+		     <a href="/{{Light['pin']}}/off" class="btn btn-dark" role="button">Lights off</a>
 		     </div>
 		 </div>
 	{% else %}
 		 <div class="row">
 			 <div class="col-md-2"><br/>
 			 <img src="/static/Lightoff.png" alt="off" width="42"/>
-		     <a href="/{{8}}/on" class="btn btn-warning" role="button">Lights on</a>
+		     <a href="/{{Light['pin']}}/on" class="btn btn-warning" role="button">Lights on</a>
 		     </div>
 		 </div>
 	{% endif %}		
@@ -92,38 +92,32 @@
 <script>
 $( document ).ready(function(){
     $("#down").on("mousedown touchstart", function() {
-     $.get('/down_side');
+     $.get('/down');
 		 $("#down").css("border-top", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
-     $.get('/stopAD');
+     $.get('/stopFB');
 		 $("#down").css("border-top", "70px solid #0040ff");
     });
     $("#up").on("mousedown touchstart", function() {
-     $.get('/up_side');
+     $.get('/up');
 		 $("#up").css("border-bottom", "70px solid #00cc00");
    }).on("mouseup touchend", function() {
-     $.get('/stopAD');
+     $.get('/stopFB');
 		 $("#up").css("border-bottom", "70px solid #0040ff");
     });
     $("#left").on("mousedown touchstart", function() {
-     $.get('/left_side');
+     $.get('/left');
 		 $("#left").css("border-right", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
-     $.get('/stopDS');
+     $.get('/stopLR');
 		 $("#left").css("border-right", "70px solid #0040ff");
     });
     $("#right").on("mousedown touchstart", function() {
-     $.get('/right_side');
+     $.get('/right');
 		 $("#right").css("border-left", "70px solid #00cc00");
      }).on("mouseup touchend", function() {
-     $.get('/stopDS');
+     $.get('/stopLR');
 		 $("#right").css("border-left", "70px solid #0040ff");
-    });
-    $("#lightON").on('click touch',function(){
-        $.get('/lighton');
-    });
-    $("#lightOFF").on('click touch',function(){
-        $.get('/lightoff');
     });
 });
 </script>
